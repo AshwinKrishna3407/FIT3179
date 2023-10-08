@@ -19,7 +19,7 @@
     }
   ],
   "transform": [{"filter": "datum['Album Release Date'] == Year"}],
-  "width": 600,
+  "width": "container",
   "height": 400,
   "mark": {"type": "circle", "size": 300},
   "encoding": {
