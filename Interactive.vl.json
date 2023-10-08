@@ -5,7 +5,7 @@
     "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/top_10000_1960-now_cleaned.csv"
   },
   "params": [
-    {"name": "grid", "select": "interval", "bind": "scales"},
+    
     {
       "name": "Year",
       "value": 1973,
