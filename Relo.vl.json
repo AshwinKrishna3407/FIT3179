@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "The Relationship Between Top 200 and Viral 50",
+  "width": 300,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"aggregate": [{"op": "count", "as": "value"}], "groupby": ["chart"]},
+    {
+      "calculate": "datum.chart == 'top200' ? 'Top 200' : 'Viral 50'",
+      "as": "formatted_chart"
+    }
+  ],
+  "mark": {"type": "arc", "innerRadius": 50},
+  "encoding": {
+    "theta": {"field": "value", "type": "quantitative"},
+    "color": {
+      "field": "formatted_chart",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Top 200", "Viral 50"],
+        "range": ["#416D9D", "#DEAC58"]
+      },
+      "legend": {"title": null}
+    },
+    "tooltip": [
+      {"field": "formatted_chart", "type": "nominal", "title": "Chart Type"},
+      {"field": "value", "type": "quantitative", "title": "Count"}
+    ]
+  },
+  "config": {}
+}

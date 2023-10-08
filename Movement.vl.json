@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Movement Of Billboard Pop Records",
+  "width": 800,
+  "height": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "bin": {"step": 10},
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Billboard rank"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of records"
+    },
+    "color": {
+      "field": "trend",
+      "type": "nominal",
+      "title": "trend",
+      "scale": {
+        "domain": ["MOVE_DOWN", "MOVE_UP", "NEW_ENTRY", "SAME_POSITION"],
+        "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
+      },
+      "legend": {"title": "trend"}
+    },
+    "tooltip": [
+      {"field": "rank", "type": "quantitative", "title": "Rank"},
+      {
+        "field": "count",
+        "type": "quantitative",
+        "aggregate": "count",
+        "title": "Number of records"
+      }
+    ]
+  },
+  "selection": {
+    "legend_select": {"type": "multi", "fields": ["trend"], "bind": "legend"}
+  },
+  "config": {"view": {"stroke": "transparent"}, "axis": {"domainWidth": 1}}
+}
