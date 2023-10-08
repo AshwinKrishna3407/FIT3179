@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Movement Of Billboard Pop Records",
-  "width": 800,
+  "width": "container",
   "height": 600,
   "data": {
     "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv"
