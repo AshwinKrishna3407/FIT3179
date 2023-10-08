@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "The Correlation of Tempo in Relation to Danceability Over Time",
+  "data": {
+    "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/top_10000_1960-now_cleaned.csv"
+  },
+  "params": [
+    {"name": "grid", "select": "interval", "bind": "scales"},
+    {
+      "name": "Year",
+      "value": 1973,
+      "bind": {
+        "input": "range",
+        "min": 1973,
+        "max": 2013,
+        "step": 1,
+        "name": "Select year: "
+      }
+    }
+  ],
+  "transform": [{"filter": "datum['Album Release Date'] == Year"}],
+  "width": 600,
+  "height": 400,
+  "mark": {"type": "circle", "size": 300},
+  "encoding": {
+    "x": {
+      "field": "Tempo",
+      "type": "quantitative",
+      "scale": {"domain": [80, 180]}
+    },
+    "y": {
+      "field": "Danceability",
+      "type": "quantitative",
+      "scale": {"domain": [0, 1]}
+    },
+    "tooltip": [
+      {"field": "Track Name", "type": "nominal", "title": "Track Name"},
+      {"field": "Tempo", "type": "quantitative", "title": "Tempo"},
+      {"field": "Danceability", "type": "quantitative", "title": "Danceability"}
+    ]
+  },
+  "config": {}
+}
