@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {"op": "sum", "field": "streams", "as": "totalStreams"},
+        {"op": "count", "as": "count"}
+      ],
+      "groupby": ["artist"]
+    },
+    {
+      "window": [{"op": "row_number", "as": "rowNumber"}],
+      "sort": [{"field": "totalStreams", "order": "descending"}]
+    },
+    {"filter": "datum.rowNumber <= 75"}
+  ],
+  "hconcat": [
+    {
+      "mark": {"type": "bar", "stroke": "white"},
+      "params": [
+        {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+      ],
+      "transform": [{"filter": {"param": "brush"}}],
+      "encoding": {
+        "y": {
+          "field": "artist",
+          "type": "nominal",
+          "axis": {"minExtent": 200, "title": "Artists"},
+          "sort": "-x",
+          "scale": {"bandSize": 1}
+        },
+        "x": {
+          "field": "totalStreams",
+          "type": "quantitative",
+          "axis": {"orient": "top", "title": "Streams"}
+        },
+        "color": {
+          "field": "totalStreams",
+          "type": "quantitative",
+          "legend": null,
+          "scale": {
+            "range": ["#2f5aa6", "#3d8bbc", "#5ab4c2", "#90d0ba", "#cae9b4"]
+          }
+        },
+        "tooltip": [
+          {"field": "artist", "type": "nominal", "title": "Artist"},
+          {
+            "field": "totalStreams",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Streams in the last 2 quarters of 2022"
+          }
+        ],
+        "strokeWidth": {
+          "condition": [{"param": "highlight", "empty": false, "value": 2}],
+          "value": 0.7
+        },
+        "strokeOpacity": {
+          "condition": [{"param": "highlight", "empty": false, "value": 1}],
+          "value": 0.7
+        }
+      }
+    },
+    {
+      "height": 200,
+      "width": 50,
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["y"]}}
+      ],
+      "mark": {"type": "bar"},
+      "encoding": {
+        "y": {
+          "field": "artist",
+          "type": "nominal",
+          "sort": "-x",
+          "axis": null,
+          "scale": {"bandSize": 1}
+        },
+        "x": {"field": "totalStreams", "type": "quantitative", "axis": null},
+        "color": {
+          "condition": {"param": "brush", "value": "white"},
+          "value": "#b4b4b4"
+        }
+      }
+    }
+  ],
+  "config": {}
+}
