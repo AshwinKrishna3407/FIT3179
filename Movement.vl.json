@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Promotion Of Pop Records",
-  "width": "container",
-  "height": 600,
+  "width": "400",
+  "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv"
   },
