@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Speechiness vs Energy vs Liveness - Swedish Metrics",
+    "anchor": "middle"
+  },
+  "width": "container",
+  "height": 400,
+  "repeat": {
+    "row": ["Liveness", "Energy", "Speechiness"],
+    "column": ["Speechiness", "Energy", "Liveness"]
+  },
+  "spec": {
+    "data": {
+      "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/top_10000_1960-now_cleaned.csv"
+    },
+    "mark": {"type": "point", "size": 100},
+    "encoding": {
+      "x": {"field": {"repeat": "column"}, "type": "quantitative"},
+      "y": {
+        "field": {"repeat": "row"},
+        "type": "quantitative",
+        "axis": {"minExtent": 30}
+      },
+      "color": {"field": "Artist Name(s)", "type": "nominal"},
+      "tooltip": [
+        {"field": "Artist Name(s)", "type": "nominal", "title": "Artist"},
+        {"field": "Track Name", "type": "nominal", "title": "Track"},
+        {"field": "Liveness", "type": "quantitative"},
+        {"field": "Energy", "type": "quantitative"},
+        {"field": "Speechiness", "type": "quantitative"}
+      ]
+    },
+    "transform": [
+      {
+        "filter": "indexof(['Adele', 'Ariana Grande', 'Rihanna'], datum['Artist Name(s)']) > -1"
+      },
+      {
+        "window": [{"op": "rank", "as": "rank"}],
+        "sort": [{"field": "Popularity", "order": "descending"}],
+        "groupby": ["Artist Name(s)"]
+      },
+      {"filter": "datum.rank <= 5"}
+    ],
+    "selection": {"view": {"type": "interval", "bind": "scales"}}
+  },
+  "config": {}
+}
