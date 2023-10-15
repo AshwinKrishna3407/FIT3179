@@ -1,46 +1,64 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Movement Of Billboard Pop Records",
+  "title": "Promotion Of Pop Records",
   "width": "container",
   "height": 600,
   "data": {
     "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv"
   },
-  "mark": "bar",
-  "encoding": {
-    "x": {
-      "bin": {"step": 10},
-      "field": "rank",
-      "type": "quantitative",
-      "title": "Billboard rank"
+  "transform": [
+    {
+      "aggregate": [{"op": "count", "as": "count_records"}],
+      "groupby": ["trend"]
     },
-    "y": {
-      "aggregate": "count",
-      "type": "quantitative",
-      "title": "Number of records"
+    {
+      "calculate": "datum.trend == 'MOVE_DOWN' ? 'Record Label Promotion' : datum.trend == 'MOVE_UP' ? 'Joint Venture Promotion' : datum.trend == 'NEW_ENTRY' ? 'Debt Financing' : 'Self Financing'",
+      "as": "display_trend"
+    }
+  ],
+  "selection": {
+    "hover": {
+      "type": "single",
+      "on": "mouseover",
+      "empty": "none",
+      "fields": ["display_trend"],
+      "clear": "mouseout"
+    }
+  },
+  "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"},
+  "encoding": {
+    "theta": {"field": "count_records", "type": "quantitative", "stack": true},
+    "radius": {
+      "field": "count_records",
+      "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
     },
     "color": {
-      "field": "trend",
+      "field": "display_trend",
       "type": "nominal",
-      "title": "trend",
+      "legend": {"title": "Financing Methods"},
       "scale": {
-        "domain": ["MOVE_DOWN", "MOVE_UP", "NEW_ENTRY", "SAME_POSITION"],
-        "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
-      },
-      "legend": {"title": "trend"}
+        "domain": [
+          "Record Label Promotion",
+          "Joint Venture Promotion",
+          "Debt Financing",
+          "Self Financing"
+        ],
+        "range": ["#E69F00", "#56B4E9", "#009E73", "#F0E442"]
+      }
     },
+    "opacity": {"condition": {"selection": "hover", "value": 1}, "value": 0.7},
     "tooltip": [
-      {"field": "rank", "type": "quantitative", "title": "Rank"},
       {
-        "field": "count",
+        "field": "display_trend",
+        "type": "nominal",
+        "title": "Financing Method"
+      },
+      {
+        "field": "count_records",
         "type": "quantitative",
-        "aggregate": "count",
         "title": "Number of records"
       }
     ]
   },
-  "selection": {
-    "legend_select": {"type": "multi", "fields": ["trend"], "bind": "legend"}
-  },
-  "config": {"view": {"stroke": "transparent"}, "axis": {"domainWidth": 1}}
+  "config": {"view": {"stroke": "transparent"}}
 }
