@@ -3,7 +3,19 @@
 
 <head>
     <title>Music Streaming around the World</title>
-    <!-- ... rest of the imports ... -->
+    
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <style>
@@ -49,31 +61,57 @@
 </head>
 
 <body>
-    <!-- ... Existing content ... -->
-
-    <!-- Visualization 4 -->
-    <div class="pure-g">
-        <div class="pure-u-1-1">
-            <div id="vis4" class="vis-container"></div>
+    <div class="page">
+        <!-- pure grid group -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <h1>Music Analytics for Music Creators - Ashwin K</h1>
+                <p>In today's digital age, music analytics play an indispensable role in how creators make decisions. Analytics for creators isn't just about numbers or understanding listenership trends; it's about harnessing insights to guide creative directions, strategic planning, and engagement tactics.</p>
+            </div>
         </div>
-    </div>
-    <p>Description for your fourth visualization goes here.</p>
+
+        <!-- Visualization 1 -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="vis1" class="vis-container"></div>
+            </div>
+        </div>
+        <p>Understanding the correlation between danceability and tempo, whilst identifying cyclical annual trends influence various decisions.</p>
+
+        <!-- Visualization 2 -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="vis2" class="vis-container"></div>
+            </div>
+        </div>
+        <p>The correlation and causation of Tempo leading danceability whilst analysing it over time.</p>
+
+        <!-- Visualization 3 -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="vis3" class="vis-container"></div>
+            </div>
+        </div>
+        <p>Description for the third visualization.</p>
+
+        <!-- Visualization 4 -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="vis4" class="vis-container"></div>
+            </div>
+        </div>
+        <p>Description for your fourth visualization goes here.</p>
+    </div> <!-- end page -->
 
     <script type="text/javascript">
-        // Existing visualizations
-        var specVis1 = "Map.vl.json";
-        var specVis2 = "Interactive.vl.json";
-        var specVis3 = "Movement.vl.json";
+        var specVis1 = "Map.vl.json"; 
+        var specVis2 = "Interactive.vl.json"; 
+        var specVis3 = "Movement.vl.json"; 
+        var specVis4 = "Longbar.vl.json"; 
 
-        // Additional visualization
-        var specVis4 = "Longbar.vl.json";
-
-        // Existing embeds
         vegaEmbed('#vis1', specVis1, {"actions": false}).catch(console.error);
         vegaEmbed('#vis2', specVis2, {"actions": false}).catch(console.error);
         vegaEmbed('#vis3', specVis3, {"actions": false}).catch(console.error);
-
-        // Embed for the fourth visualization
         vegaEmbed('#vis4', specVis4, {"actions": false}).catch(console.error);
     </script>
 </body>
