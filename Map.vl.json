@@ -10,6 +10,18 @@
         "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
         "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F5F5F5",
+        "stroke": "#BFC0C0",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
       "transform": [
         {
           "lookup": "properties.NAME",
@@ -22,13 +34,13 @@
           }
         }
       ],
-      "mark": {"type": "geoshape", "stroke": "white"},
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.7},
       "encoding": {
         "color": {
           "field": "streams",
           "type": "quantitative",
           "scale": {
-            "range": ["#E6F7FF", "#AEDFF7", "#85C7E5", "#5CAFD4", "#3287B2"]
+            "range": ["#EAE2F8", "#C5C3E6", "#A0A4D0", "#7873AB", "#4F4187"]
           },
           "legend": {"title": "Streams"}
         },
@@ -43,7 +55,12 @@
         "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/ne_110m.json",
         "format": {"type": "topojson", "feature": "ne_110m_graticules_30-2"}
       },
-      "mark": {"type": "geoshape", "fill": "none", "stroke": "black"}
+      "mark": {
+        "type": "geoshape",
+        "fill": "none",
+        "stroke": "#d0d0d0",
+        "strokeDash": [2, 2]
+      }
     }
   ],
   "config": {}
