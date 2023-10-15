@@ -68,14 +68,18 @@
         <!-- Visualization 3 -->
         <div id="vis3" class="vega-embed"></div>
 
+        <!-- Visualization 4 -->
+        <div id="vis4" class="vega-embed"></div>
+
         <!-- TODO: Place your other visualizations and their descriptions here. -->
 
     </div> <!-- end container -->
 
     <script type="text/javascript">
         var specVis1 = "Map.vl.json"; // Replace with your actual file path
-        var specVis2 = "Interactive.vl.json"; // Replace with your actual file path
-        var specVis3 = "Movement.vl.json";
+        var specVis2 = "Longbar.vl.json"; // Updated file path
+        var specVis3 = "Movement.vl.json"; 
+        var specVis4 = "Interactive.vl.json"; // Updated to be Visualization 4
 
         vegaEmbed('#vis1', specVis1, {
             "actions": false
@@ -94,7 +98,8 @@
         }).then(function (result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
-    </script>
-</body>
 
-</html>
+        vegaEmbed('#vis4', specVis4, {
+            "actions": false
+        }).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega
