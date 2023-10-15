@@ -30,7 +30,8 @@
         }
 
         body {
-            background-color: lightgray;
+            background-color: #d5dbf2; /* a light purplish tone, reminiscent of music and creative vibes */
+            background-image: url('data:image/svg+xml,<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="2" fill="%23808080"/><circle cx="25" cy="25" r="2" fill="%23808080"/></svg>'); /* subtle pattern to avoid flatness */
         }
 
         .page {
@@ -40,6 +41,8 @@
             padding: 70px;
             padding-top: 35px;
             margin-top: 30px;
+            border-radius: 12px; /* soft round corners */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* subtle shadow to elevate the content box */
         }
 
         .vis-container {
@@ -104,10 +107,10 @@
     </div> <!-- end page -->
 
     <script type="text/javascript">
-        var specVis1 = "Map.vl.json"; 
-        var specVis2 = "Interactive.vl.json"; 
-        var specVis3 = "Movement.vl.json"; 
-        var specVis4 = "Longbar.vl.json"; 
+        var specVis1 = "Map.vl.json";
+        var specVis2 = "Interactive.vl.json";
+        var specVis3 = "Movement.vl.json";
+        var specVis4 = "LongBar.vl.json";  // File name updated here
 
         vegaEmbed('#vis1', specVis1, {"actions": false}).catch(console.error);
         vegaEmbed('#vis2', specVis2, {"actions": false}).catch(console.error);
@@ -115,5 +118,4 @@
         vegaEmbed('#vis4', specVis4, {"actions": false}).catch(console.error);
     </script>
 </body>
-
 </html>
