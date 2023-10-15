@@ -1,35 +1,64 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "The Relationship Between Top 200 and Viral 50",
-  "width": 300,
-  "height": 350,
+  "title": "Promotion Of Pop Records",
+  "width": "container",
+  "height": 600,
   "data": {
-    "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv",
-    "format": {"type": "csv"}
+    "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/sampled_charts2.csv"
   },
   "transform": [
-    {"aggregate": [{"op": "count", "as": "value"}], "groupby": ["chart"]},
     {
-      "calculate": "datum.chart == 'top200' ? 'Top 200' : 'Viral 50'",
-      "as": "formatted_chart"
+      "aggregate": [{"op": "count", "as": "count_records"}],
+      "groupby": ["trend"]
+    },
+    {
+      "calculate": "datum.trend == 'MOVE_DOWN' ? 'Record Label Promotion' : datum.trend == 'MOVE_UP' ? 'Joint Venture Promotion' : datum.trend == 'NEW_ENTRY' ? 'Debt Financing' : 'Self Financing'",
+      "as": "display_trend"
     }
   ],
-  "mark": {"type": "arc", "innerRadius": 50},
+  "selection": {
+    "hover": {
+      "type": "single",
+      "on": "mouseover",
+      "empty": "none",
+      "fields": ["display_trend"],
+      "clear": "mouseout"
+    }
+  },
+  "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"},
   "encoding": {
-    "theta": {"field": "value", "type": "quantitative"},
-    "color": {
-      "field": "formatted_chart",
-      "type": "nominal",
-      "scale": {
-        "domain": ["Top 200", "Viral 50"],
-        "range": ["#416D9D", "#DEAC58"]
-      },
-      "legend": {"title": null}
+    "theta": {"field": "count_records", "type": "quantitative", "stack": true},
+    "radius": {
+      "field": "count_records",
+      "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
     },
+    "color": {
+      "field": "display_trend",
+      "type": "nominal",
+      "legend": {"title": "Financing Methods"},
+      "scale": {
+        "domain": [
+          "Record Label Promotion",
+          "Joint Venture Promotion",
+          "Debt Financing",
+          "Self Financing"
+        ],
+        "range": ["#E69F00", "#56B4E9", "#009E73", "#F0E442"]
+      }
+    },
+    "opacity": {"condition": {"selection": "hover", "value": 1}, "value": 0.7},
     "tooltip": [
-      {"field": "formatted_chart", "type": "nominal", "title": "Chart Type"},
-      {"field": "value", "type": "quantitative", "title": "Count"}
+      {
+        "field": "display_trend",
+        "type": "nominal",
+        "title": "Financing Method"
+      },
+      {
+        "field": "count_records",
+        "type": "quantitative",
+        "title": "Number of records"
+      }
     ]
   },
-  "config": {}
+  "config": {"view": {"stroke": "transparent"}}
 }
