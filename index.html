@@ -2,82 +2,133 @@
 <html>
 
 <head>
-    <title>Music Streaming around the World</title>
-    
-    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <title>Music Streaming around the World</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
 
-    <!-- Sophisticated Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Oxygen', sans-serif;
+      line-height: 1.5;
+    }
 
-    <!-- CSS -->
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 0;
-        }
+    h1 {
+      font-weight: 900;
+    }
 
-        h1, h2 {
-            text-align: center;
-            padding: 20px;
-        }
+    body {
+      background-color: lightgray;
+    }
 
-        p {
-            margin: 20px;
-        }
+    .page {
+      width: 750px;
+      background-color: white;
+      margin: auto;
+      padding: 70px;
+      padding-top: 35px;
+      margin-top: 30px;
+    }
 
-        .vis-container {
-            width: 90%;
-            margin: auto;
-            padding: 20px 0;
-        }
+    .vis-container {
+      width: 100%;
+    }
 
-        .vis-description {
-            text-align: center;
-            font-size: 14px;
-            margin-top: 10px;
-        }
+    .description h2,
+    h1 {
+      margin-top: 10px;
+    }
 
-    </style>
+    .description-right {
+      padding-left: 10px;
+    }
+
+    .description-left {
+      padding-right: 10px;
+    }
+
+    .pure-g {
+      margin-bottom: 25px;
+    }
+
+    .small-font {
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Music Analytics for Music Creators - Ashwin K</h1>
-    <p>In today's digital age, music analytics play an indispensable role in how creators make decisions. Analytics for creators isn't just about numbers or understanding listenership trends; it's about harnessing insights to guide creative directions, strategic planning, and engagement tactics.</p>
 
-    <!-- Visualization 1: Map -->
-    <div class="vis-container">
-        <div id="vis1"></div>
-        <div class="vis-description">Description for the Map visualization goes here.</div>
+  <div class="page">
+
+    <!-- Title and subtitle -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>Music Analytics for Music Creators - Ashwin K</h1>
+        <p>In today's digital age, music analytics play an indispensable role in how creators make decisions. Analytics for creators isn't just about numbers or understanding listenership trends; it's about harnessing insights to guide creative directions, strategic planning, and engagement tactics.</p>
+      </div>
     </div>
 
-    <!-- Visualization 2: LongBar -->
-    <div class="vis-container">
-        <div id="vis2"></div>
-        <div class="vis-description">Description for the LongBar visualization goes here.</div>
+    <!-- First Vega-Lite Chart -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis1" class="vis-container"></div>
+      </div>
     </div>
 
-    <!-- Visualization 3: Interactive -->
-    <div class="vis-container">
-        <div id="vis3"></div>
-        <div class="vis-description">Description for the Interactive visualization goes here.</div>
+<p>Understanding the correlation between danceability and tempo, whilst identifying cyclical annual trends influence various decisions </p>
+
+    
+    <!-- Second Vega-Lite Chart -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis2" class="vis-container"></div>
+      </div>
     </div>
 
-    <!-- Visualization 4: Movement -->
-    <div class="vis-container">
-        <div id="vis4"></div>
-        <div class="vis-description">Description for the Movement visualization goes here.</div>
+  </div>
+
+
+  <p>The correlation and causation of Tempo leading danceability whilst analysing it over time </p>
+    <!-- third Vega-Lite Chart -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis3" class="vis-container"></div>
+      </div>
     </div>
 
-    <script type="text/javascript">
-        vegaEmbed('#vis1', "Map.vl.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#vis2', "LongBar.vl.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#vis3', "Interactive.vl.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#vis4', "Movement.vl.json", {"actions": false}).catch(console.error);
-    </script>
+  </div>
+
+  <script type="text/javascript">
+    var specVis1 = "Map.vl.json"; // Replace with your actual file path
+    var specVis2 = "Interactive.vl.json"; // Replace with your actual file path
+    var specVis3 = "Movement.vl.json";
+
+    vegaEmbed('#vis1', specVis1, {
+      "actions": false
+    }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis2', specVis2, {
+      "actions": false
+    }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    
+    vegaEmbed('#vis3', specVis3, {
+      "actions": false
+    }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+    
+  </script>
 </body>
+
 </html>
