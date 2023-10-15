@@ -1,43 +1,101 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "The Correlation of Tempo in Relation to Danceability Over Time",
+  "title": "Tempo Vs Danceability Over Time",
   "data": {
     "url": "https://raw.githubusercontent.com/AshwinKrishna3407/FIT3179/main/top_10000_1960-now_cleaned.csv"
   },
   "params": [
-    
     {
       "name": "Year",
       "value": 1973,
       "bind": {
         "input": "range",
         "min": 1973,
-        "max": 2013,
-        "step": 1,
-        "name": "Select year: "
+        "max": 2012,
+        "step": 4,
+        "name": "Select starting year of 4-year period: "
       }
     }
   ],
-  "transform": [{"filter": "datum['Album Release Date'] == Year"}],
+  "transform": [
+    {
+      "filter": "(datum['Album Release Date'] >= Year) && (datum['Album Release Date'] < Year + 4)"
+    },
+    {
+      "calculate": "datum.Tempo > 120 && datum.Danceability > 0.5 ? 'Above Optimum' : 'Below Optimum'",
+      "as": "PositionRelativeToOptimum"
+    }
+  ],
   "width": "container",
   "height": 400,
-  "mark": {"type": "circle", "size": 300},
-  "encoding": {
-    "x": {
-      "field": "Tempo",
-      "type": "quantitative",
-      "scale": {"domain": [80, 180]}
+  "layer": [
+    {
+      "mark": {"type": "circle", "size": 300},
+      "encoding": {
+        "x": {
+          "field": "Tempo",
+          "type": "quantitative",
+          "title": "Tempo",
+          "scale": {"domain": [60, 200]}
+        },
+        "y": {
+          "field": "Danceability",
+          "type": "quantitative",
+          "title": "Danceability",
+          "scale": {"domain": [0, 1]}
+        },
+        "color": {
+          "field": "PositionRelativeToOptimum",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Above Optimum",
+              "Below Optimum",
+              "Average",
+              "Optimum Pop Metric"
+            ],
+            "range": ["#0072B2", "#D55E00", "#009E73", "#F0E442"]
+          },
+          "legend": {"title": "Position & Metrics"}
+        },
+        "tooltip": [
+          {"field": "Track Name", "type": "nominal", "title": "Track Name"},
+          {"field": "Tempo", "type": "quantitative", "title": "Tempo"},
+          {
+            "field": "Danceability",
+            "type": "quantitative",
+            "title": "Danceability"
+          }
+        ]
+      }
     },
-    "y": {
-      "field": "Danceability",
-      "type": "quantitative",
-      "scale": {"domain": [0, 1]}
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {"op": "mean", "field": "Tempo", "as": "avg_tempo"},
+            {"op": "mean", "field": "Danceability", "as": "avg_danceability"}
+          ]
+        }
+      ],
+      "mark": {"type": "point", "size": 500},
+      "encoding": {
+        "x": {"field": "avg_tempo", "type": "quantitative"},
+        "y": {"field": "avg_danceability", "type": "quantitative"},
+        "color": {"value": "#009E73"},
+        "tooltip": {"value": "Average of selected period"}
+      }
     },
-    "tooltip": [
-      {"field": "Track Name", "type": "nominal", "title": "Track Name"},
-      {"field": "Tempo", "type": "quantitative", "title": "Tempo"},
-      {"field": "Danceability", "type": "quantitative", "title": "Danceability"}
-    ]
-  },
+    {
+      "data": {"values": [{"optimal_tempo": 120, "optimal_danceability": 0.5}]},
+      "mark": {"type": "point", "size": 500},
+      "encoding": {
+        "x": {"field": "optimal_tempo", "type": "quantitative"},
+        "y": {"field": "optimal_danceability", "type": "quantitative"},
+        "color": {"value": "#F0E442"},
+        "tooltip": {"value": "Optimum Pop Metric"}
+      }
+    }
+  ],
   "config": {}
 }
