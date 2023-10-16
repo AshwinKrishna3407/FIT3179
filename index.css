@@ -60,6 +60,9 @@ p {
 /* full width style for prominent charts */
 .pure-g > .pure-u-1 {
     width: 100%;
+    align-items: center;
+    justify-content: center;
+
 }
 
 /* Description and Visualizations */
