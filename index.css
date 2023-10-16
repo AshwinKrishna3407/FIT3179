@@ -1,125 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+/* Reset and Base */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: steelblue;
+    font-family: 'Arial', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif;
+}
 
 .page {
-    width: 1300px;
-    background-color: #AEDFF7; /* Pastel Blue */
-    margin: auto;
-    padding: 30px;
-    box-sizing: border-box;
+    width: 80%; /* Adjusted to make it responsive */
+    background-color: azure;
+    margin: 30px auto;
+    padding: 40px 10%;
+    border-radius: 10px; /* Adding rounded corners */
 }
 
-#title-block, .chart-title {
-    padding: 10px 20px;
-    background-color: #007BFF; /* Vivid Blue */
-    color: #FFFFFF;
+/* Titles and Headings */
+
+h1 {
+    font-weight: 900;
+    background: #B0E0E6; /* PowderBlue */
+    text-align: center;
+    padding: 40px 0;
+    font-size: 55px;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Provide some space after title */
 }
 
-.chart-block {
-    background-color: #AEDFF7; /* Pastel Blue */
-    border-radius: 15px;
+/* Grid and Layout */
+
+.pure-g {
+    margin-bottom: 30px;
 }
 
-.pure-u-2-3 {
-    width: 75%;
+.pure-g1 {
+    margin-bottom: 0;
+    padding-left: 20px;
 }
 
-.pure-u-1-3 {
-    width: 25%;
-}
+/* Description and Visualizations */
 
-.chart-content {
-    margin-left: 20px;
-}
-
-.chart-content, .description {
-    padding: 10px 20px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    background-color: #D1E9FF; /* Lighter Pastel Blue */
-}
-
-body, label, canvas, description, p {
-    font-family: 'Cabin', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6, .chart-title {
-    font-family: 'Montserrat', sans-serif;
+.description h2, .chart-title h2 {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #5F9EA0; /* CadetBlue - Darker accent for headers */
+    border-radius: 10px;
 }
 
 .vis-container {
     width: 100%;
-    height: 400px;
-    position: relative;
+    border-radius: 10px; /* Adding rounded corners to visualization containers */
 }
 
-h1 {
-    font-size: 3em;
+.description, .chart-content {
+    background-color: #E0FFFF; /* Light Cyan */
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
-.background {
-    background-color: #AEDFF7; /* Pastel Blue */
+.description-right {
+    padding-left: 20px;
 }
 
-#desc-contents-block {
-    padding-top: 20px;
+.description-left {
+    padding-right: 20px;
 }
-.contents-box a {
-    color: #007BFF; /* Vivid Blue */
+
+.small-font {
+    font-size: 14px;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #B0E0E6;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+footer a {
+    color: #5F9EA0; /* CadetBlue */
     text-decoration: none;
-    font-weight: bold;
 }
 
-.contents-box a:hover {
+footer a:hover {
     text-decoration: underline;
 }
 
-::-webkit-scrollbar-thumb {
-    background-color: #007BFF; /* Vivid Blue */
+/* Enhancements for Calming Elements */
+
+.button, .section-btn, .viz-btn {
+    border-radius: 20px;
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background-color: #0056b3; /* Darker Blue */
-}
-
-::-webkit-scrollbar-track {
-    background-color: #AEDFF7; /* Pastel Blue */
-}
-
-::-webkit-scrollbar-track:hover {
-    background-color: #89c7e2; /* A bit darker Pastel Blue */
-}
-
-.vega-tooltip {
-    font-family: 'Cabin', sans-serif !important;
-}
-
-.section-title {
-    background-color: #007BFF; /* Vivid Blue */
-    color: #FFFFFF;
-}
-
-.section-btn {
-    background-color: #007BFF; /* Vivid Blue */
-}
-
-.section-btn:hover {
-    background-color: #0056b3; /* Darker Blue */
-}
-
-.viz-btn {
-    background-color: #33A1FD; /* Lighter Vivid Blue */
-}
-
-.viz-btn:hover {
-    background-color: #007BFF; /* Vivid Blue */
-}
-
-label {
-    font-size: 15px;
-    /* Adjust as per your requirement */
-}
-
-input[type=range] {
-    margin-top: 15px;
-    /* Optional: to give some space between the label and slider */
+.button:hover, .section-btn:hover, .viz-btn:hover {
+    background-color: #3D5A80; /* Slightly darker blue on hover */
 }
