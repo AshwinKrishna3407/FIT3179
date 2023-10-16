@@ -52,7 +52,7 @@ h1 {
 
 /* Description and Visualizations */
 
-.description, .chart-title, .section-title {
+.description, .chart-title, .section-title, .title-block {
     background-color: #5A8BAF; /* Darker Pastel Blue for titles */
     padding: 15px;
     border-radius: 15px;
