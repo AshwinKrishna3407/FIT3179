@@ -21,45 +21,30 @@
 
   <div class="page">
 
-    <!-- Your existing content -->
-
-    <!-- Fourth Vega-Lite Chart -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <div id="vis4" class="vis-container"></div>
-      </div>
-    </div>
-
-    <p>Insert description for the fourth visualization here (if any).</p>
+    <!-- Your existing content up to the fourth visualization -->
 
     <!-- Fifth Vega-Lite Chart -->
     <div class="pure-g">
       <div class="pure-u-1-1">
         <div id="vis5" class="vis-container"></div>
+        <p>Insert description for the fifth visualization here (if any).</p>
       </div>
     </div>
-
-    <p>Insert description for the fifth visualization here (if any).</p>
 
   </div>
 
   <script type="text/javascript">
-    // Your existing script here for embedding vis1, vis2, and vis3
-
+    var specVis1 = "Map.vl.json";
+    var specVis2 = "Interactive.vl.json";
+    var specVis3 = "Movement.vl.json";
     var specVis4 = "LongBar.vl.json";
     var specVis5 = "ninescatter.vl.json";
 
-    vegaEmbed('#vis4', specVis4, {
-      "actions": false
-    }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-
-    vegaEmbed('#vis5', specVis5, {
-      "actions": false
-    }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
+    vegaEmbed('#vis1', specVis1, {"actions": false}).catch(console.error);
+    vegaEmbed('#vis2', specVis2, {"actions": false}).catch(console.error);
+    vegaEmbed('#vis3', specVis3, {"actions": false}).catch(console.error);
+    vegaEmbed('#vis4', specVis4, {"actions": false}).catch(console.error);
+    vegaEmbed('#vis5', specVis5, {"actions": false}).catch(console.error);
   </script>
 </body>
 
