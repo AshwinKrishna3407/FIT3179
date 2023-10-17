@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Sonorous Supremacy: Exploring Streaming Metrics Worldwide",
-  "width": {"expr": "container*0.75"},
+  "width": "container",
   "height": 400,
   "projection": {"type": "equirectangular"},
   "layer": [
